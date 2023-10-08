@@ -27,7 +27,7 @@ pip install pygame
 ```
 
 ## Running the Program
-After cloning the repository and installing the required dependencies, navigate to the directory containin the **monza_simulator** code and run:
+After cloning the repository and installing the required dependencies, navigate to the directory containing the **monza_simulator** code and run:
 ```
 python monza_simulator.py
 ```
