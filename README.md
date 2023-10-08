@@ -5,8 +5,9 @@ The following is a Python program that simulates the Monza game. This game consi
 The program can be used either as a game to play manually or as a **non-linear controller testing platform**. It counts with four different levels of difficulty (beginner, intermediate, expert and legendary) depending on the length of the parabollic rails. With respect to the controllers, three different ones have been programmed following different non-linear control techniques. The program saves the number of times you won and lost and also the best achieved time. After the game you can access to graphic information about the path the coin followed and the actuation over the system with respect to time.
 
 <p align="center">
-  <img src="https://github.com/danisotelo/labyrinth_solver/blob/main/img/labyrinth.png" alt="Image Description">
+  <img src="https://github.com/danisotelo/monza_simulator/blob/main/img/game.png" alt="Image Description" width="100%">
 </p>
+
 
 ## Getting Started
 ### Cloning the Repository
