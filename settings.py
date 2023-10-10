@@ -69,41 +69,41 @@ global diff_eqs
 diff_eqs = []
 
 # Beginner difficulty
-diff_eqs.append([{'coeff': (-0.00054, 160), 'x_right': 138, 'x_left': -62.11},
-                 {'coeff': (-0.00054, 114.3), 'x_right': 0, 'x_left': -180},
-                 {'coeff': (-0.00054, 68.6), 'x_right': 198, 'x_left': 0},
+diff_eqs.append([{'coeff': (-0.00054, 160.35), 'x_right': 138, 'x_left': -62.11},
+                 {'coeff': (-0.00054, 114.29), 'x_right': 0, 'x_left': -180},
+                 {'coeff': (-0.00054, 68.57), 'x_right': 198, 'x_left': 0},
                  {'coeff': (-0.00054, 22.86), 'x_right': 0, 'x_left': -203},
                  {'coeff': (-0.00054, -22.86), 'x_right': 198, 'x_left': 0},
-                 {'coeff': (-0.00054, -68.6), 'x_right': 0, 'x_left': -183},
-                 {'coeff': (-0.00054, -114.3), 'x_right': 159, 'x_left': 0},
-                 {'coeff': (-0.00054, -160), 'x_right': -25.54, 'x_left': -116}])
+                 {'coeff': (-0.00054, -68.57), 'x_right': 0, 'x_left': -183},
+                 {'coeff': (-0.00054, -114.29), 'x_right': 159, 'x_left': 0},
+                 {'coeff': (-0.00054, -160.35), 'x_right': -25.54, 'x_left': -116}])
 
 # Intermediate difficulty
-diff_eqs.append([{'coeff': (-0.00054, 160), 'x_right': 138, 'x_left': -62.11},
-                 {'coeff': (-0.00054, 114.3), 'x_right': 62.11, 'x_left': -180},
-                 {'coeff': (-0.00054, 68.6), 'x_right': 198, 'x_left': -47.58},
+diff_eqs.append([{'coeff': (-0.00054, 160.35), 'x_right': 138, 'x_left': -62.11},
+                 {'coeff': (-0.00054, 114.29), 'x_right': 62.11, 'x_left': -180},
+                 {'coeff': (-0.00054, 68.57), 'x_right': 198, 'x_left': -47.58},
                  {'coeff': (-0.00054, 22.86), 'x_right': 49.69, 'x_left': -203},
                  {'coeff': (-0.00054, -22.86), 'x_right': 198, 'x_left': -48.47},
-                 {'coeff': (-0.00054, -68.6), 'x_right': 44.06, 'x_left': -183},
-                 {'coeff': (-0.00054, -114.3), 'x_right': 159, 'x_left': -54.09},
-                 {'coeff': (-0.00054, -160), 'x_right': -25.54, 'x_left': -116}])
+                 {'coeff': (-0.00054, -68.57), 'x_right': 44.06, 'x_left': -183},
+                 {'coeff': (-0.00054, -114.29), 'x_right': 159, 'x_left': -54.09},
+                 {'coeff': (-0.00054, -160.35), 'x_right': -25.54, 'x_left': -116}])
 
 # Expert difficulty
-diff_eqs.append([{'coeff': (-0.00054, 160), 'x_right': 138, 'x_left': -62.11},
-                 {'coeff': (-0.00054, 114.3), 'x_right': 123.94, 'x_left': -180},
-                 {'coeff': (-0.00054, 68.6), 'x_right': 198, 'x_left': -95.03},
+diff_eqs.append([{'coeff': (-0.00054, 160.35), 'x_right': 138, 'x_left': -62.11},
+                 {'coeff': (-0.00054, 114.29), 'x_right': 123.94, 'x_left': -180},
+                 {'coeff': (-0.00054, 68.57), 'x_right': 198, 'x_left': -95.03},
                  {'coeff': (-0.00054, 22.86), 'x_right': 99.24, 'x_left': -203},
                  {'coeff': (-0.00054, -22.86), 'x_right': 198, 'x_left': -96.8},
-                 {'coeff': (-0.00054, -68.6), 'x_right': 88.03, 'x_left': -183},
-                 {'coeff': (-0.00054, -114.3), 'x_right': 159, 'x_left': -108},
-                 {'coeff': (-0.00054, -160), 'x_right': -25.54, 'x_left': -116}])
+                 {'coeff': (-0.00054, -68.57), 'x_right': 88.03, 'x_left': -183},
+                 {'coeff': (-0.00054, -114.29), 'x_right': 159, 'x_left': -108},
+                 {'coeff': (-0.00054, -160.35), 'x_right': -25.54, 'x_left': -116}])
 
 # Legendary difficulty
-diff_eqs.append([{'coeff': (-0.00054, 160), 'x_right': 138, 'x_left': -62.11},
-                 {'coeff': (-0.00054, 114.3), 'x_right': 123.94, 'x_left': -180},
-                 {'coeff': (-0.00054, 68.6), 'x_right': 198, 'x_left': -142.24},
+diff_eqs.append([{'coeff': (-0.00054, 160.35), 'x_right': 138, 'x_left': -62.11},
+                 {'coeff': (-0.00054, 114.29), 'x_right': 123.94, 'x_left': -180},
+                 {'coeff': (-0.00054, 68.57), 'x_right': 198, 'x_left': -142.24},
                  {'coeff': (-0.00054, 22.86), 'x_right': 148.51, 'x_left': -203},
                  {'coeff': (-0.00054, -22.86), 'x_right': 198, 'x_left': -144.88},
-                 {'coeff': (-0.00054, -68.6), 'x_right': 131.8, 'x_left': -183},
-                 {'coeff': (-0.00054, -114.3), 'x_right': 159, 'x_left': -108},
-                 {'coeff': (-0.00054, -160), 'x_right': -25.54, 'x_left': -116}])
+                 {'coeff': (-0.00054, -68.57), 'x_right': 131.8, 'x_left': -183},
+                 {'coeff': (-0.00054, -114.29), 'x_right': 159, 'x_left': -108},
+                 {'coeff': (-0.00054, -160.35), 'x_right': -25.54, 'x_left': -116}])

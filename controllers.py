@@ -18,14 +18,14 @@ tuned to improve performance:
  - Beginner: lambda = 100, k = 0.002
  - Intermediate: lambda = 100, k = 0.004
  - Expert: lambda = 110, k = 0.0095
- - Legendary: lambda = 120, k = 0.0095
+ - Legendary: lambda = 140, k = 0.0095
 '''
 
 class SlidingModeController:
     def __init__(self, diff):
         self.prev_error = 0
         self.diff = diff
-        self.lambda_ = [100, 100, 110, 120]
+        self.lambda_ = [100, 100, 110, 140]
         self.k = [0.002, 0.004, 0.0095, 0.0095] # Control gain
     
     def get_target_position(self, stage):
