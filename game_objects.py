@@ -17,7 +17,7 @@ from utils import local_to_global, world_to_screen, draw_mit_license_and_authors
 
 # Class to define a button
 class Button:
-    def __init__(self, x, y, w, h, texts, image=None, centering=0):
+    def __init__(self, x, y, w, h, texts, image=None, centering=0, text_size=35):
         self.rect = pygame.Rect(x, y, w, h)
         self.texts = texts if isinstance(texts, list) else [texts]
         self.image = image
@@ -25,7 +25,7 @@ class Button:
         if image is not None:
             aspect_ratio = image.get_width() / image.get_height()
             self.image = pygame.transform.scale(image, (int(w/6), int((w/6) / aspect_ratio)))
-
+        self.text_size = text_size
     def draw(self, screen, font, color, border_radius=10):
         pygame.draw.rect(screen, color, self.rect, border_radius=border_radius)
         
@@ -41,6 +41,7 @@ class Button:
         current_y_offset = (self.rect.height - total_text_height) // 2
 
         for text in self.texts:
+            font = pygame.font.Font(None, self.text_size)
             text_surf = font.render(text, True, BEIGE)
             text_rect = text_surf.get_rect()
             text_rect.y = self.rect.y + current_y_offset
@@ -331,7 +332,8 @@ class Monza:
             self.controller_n = selected_controller
             if self.controller_n == 1:
                 self.controller = SlidingModeController(diff)
-
+            elif self.controller_n == 2:
+                self.controller = FuzzyLogicController(diff)
     def render_number(self, number, offset = 0):
         # Render the text with the chosen font
         font = pygame.font.Font(None, 20)
@@ -381,12 +383,24 @@ class Monza:
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_LEFT]:
                     self.circle.rotate(0.005)
+                    print(self.circle.angle)
                 if keys[pygame.K_RIGHT]:
                     self.circle.rotate(-0.005)
-            else:
+            
+            # Si es SlidingModeController
+            elif self.controller_n == 1:
                 target_position = self.controller.get_target_position(self.coin.n)
                 if target_position !=  "Exit":
                     control_action = self.controller.control(self.coin.x1, target_position)
+                    self.circle.rotate(control_action)
+                else:
+                    self.flag_out = True
+
+            # Si es FuzzyLogicController
+            elif self.controller_n == 2:
+                target_position = self.controller.get_target_position(self.coin.n)
+                if target_position !=  "Exit":
+                    control_action = self.controller.control(self.coin.x1, self.coin.n, target_position)
                     self.circle.rotate(control_action)
                 else:
                     self.flag_out = True

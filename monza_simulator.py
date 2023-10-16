@@ -38,11 +38,17 @@ def main():
             next_screen = main_menu(screen)
         elif next_screen == "diff_menu_manual": # Difficulty selection menu for manual mode
             diff = diff_menu(screen)
-            next_screen = "start_game_manual"
+            if diff == "main_menu":
+                next_screen ="main_menu"
+            else:
+                next_screen = "start_game_manual"
         elif next_screen == "diff_menu_controller": # Difficulty selection menu for controller mode
             diff = diff_menu(screen)
-            selected_controller = controllers_menu(screen)
-            next_screen = "start_game_controller"
+            if diff == "main_menu":
+                next_screen ="main_menu"
+            else:
+                selected_controller = controllers_menu(screen)
+                next_screen = "start_game_controller"
             
         if next_screen == "start_game_manual": # Manual mode
             game = Monza(screen, diff, counter_wins, counter_losses, best_time, "manual")
@@ -59,11 +65,14 @@ def main():
             next_screen = post_game_menu(screen, result, game.coin.positions, "manual") # Postgame menu
             
         elif next_screen == "start_game_controller": # Controller mode
-            if selected_controller == 1:
+            if selected_controller == "diff_menu_controller":
+               next_screen = "diff_menu_controller"
+            elif selected_controller in [1, 2]: 
                 game = Monza(screen, diff, counter_wins, counter_losses, best_time, "controller", selected_controller)
                 result = game.run()
                 # Update parameters
                 if result == "win":
+                    print(game.coin.t)
                     counter_wins += 1
                     if game.coin.t < best_time:
                         best_time = game.coin.t

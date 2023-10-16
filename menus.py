@@ -64,7 +64,8 @@ def diff_menu(screen):
         Button(20, 375, 175, 250, "Beginner", None, 1),
         Button(215, 375, 175, 250, "Intermediate", None, 1),
         Button(410, 375, 175, 250, "Expert", None, 1),
-        Button(605, 375, 175, 250, "Legendary", None, 1)
+        Button(605, 375, 175, 250, "Legendary", None, 1),
+        Button(10, 660, 80, 30, "Back", None, 1, 25)
     ]
     
     # Difficulty images
@@ -100,6 +101,8 @@ def diff_menu(screen):
                     return 2
                 if buttons[3].is_clicked(pos, event):
                     return 3
+                if buttons[4].is_clicked(pos, event):
+                    return "main_menu"
 
         # Draw the title and images
         title_rect = title_image.get_rect(center = (SCREEN_WIDTH // 2, 125))
@@ -127,7 +130,8 @@ def controllers_menu(screen):
     buttons = [
         Button(65, 375, 180, 250, ["Controller 1", " ", "Sliding Mode", "Controller", "(SMC)"], None, 1),
         Button(310, 375, 180, 250, ["Controller 2", " ", "Fuzzy Logic", " ", " "], None, 1),
-        Button(555, 375, 180, 250, ["Controller 3", " ", "Reinforcement", "Learning", " "], None, 1)
+        Button(555, 375, 180, 250, ["Controller 3", " ", "Reinforcement", "Learning", " "], None, 1),
+        Button(10, 660, 80, 30, "Back", None, 1, 25)
     ]
     
     # Controller images
@@ -154,6 +158,8 @@ def controllers_menu(screen):
                     return 2
                 if buttons[2].is_clicked(pos, event):
                     return 3
+                if buttons[3].is_clicked(pos, event):
+                    return "diff_menu_controller"
 
         # Draw the title and images
         title_rect = title_image.get_rect(center = (SCREEN_WIDTH // 2, 125))
