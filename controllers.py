@@ -58,7 +58,6 @@ class SlidingModeController:
         return control_action
 
 
-# Controlador de David
 class FuzzyLogicController:
     def __init__(self, diff):
         self.diff = diff
@@ -80,71 +79,71 @@ class FuzzyLogicController:
     
     def control(self, coin_position, coin_n, target_position):
 
-        # Obtener el piso de la moneda actual
+        # Obtain the current floor of the coin
         eq_data = diff_eqs[self.diff][coin_n]
-        r_max = (eq_data["x_right"]-eq_data["x_left"])  # rango máximo de x por piso
+        r_max = (eq_data["x_right"]-eq_data["x_left"])  # maximum range of x per floor
 
-        # Variables de entrada y salida
+        # Input and output variables
         dist = target_position - coin_position
         vel = dist - self.prev_dist
 
-        # Definir las variables de entrada y salida
-        distancia = ctrl.Antecedent(np.arange(-r_max, r_max, 5), 'distancia')  # distancia = target_position - coin_position
-        velocidad = ctrl.Antecedent(np.arange(-100, 100, 0.5), 'velocidad')
-        angulo = ctrl.Consequent(np.arange(-0.04, 0.04, 0.001), 'angulo')
+        # Define input and output variables
+        distance = ctrl.Antecedent(np.arange(-r_max, r_max, 5), 'distance')  # distance = target_position - coin_position
+        velocity = ctrl.Antecedent(np.arange(-100, 100, 0.5), 'velocity')
+        angle = ctrl.Consequent(np.arange(-0.04, 0.04, 0.001), 'angle')
 
         
-        # Definir los conjuntos difusos para las variables de entrada y salida
-        distancia['izquierda'] = fuzz.trimf(distancia.universe, [-r_max, -r_max/4, 0])
-        distancia['centro'] = fuzz.trimf(distancia.universe, [-30.8, 0, 30.8])
-        distancia['derecha'] = fuzz.trimf(distancia.universe, [0, r_max/4, r_max])
+        # Define the fuzzy sets for the input and output variables
+        distance['left'] = fuzz.trimf(distance.universe, [-r_max, -r_max/4, 0])
+        distance['center'] = fuzz.trimf(distance.universe, [-30.8, 0, 30.8])
+        distance['right'] = fuzz.trimf(distance.universe, [0, r_max/4, r_max])
 
-        velocidad['negativa+'] = fuzz.trimf(velocidad.universe, [-100, -100, -1.15])
-        velocidad['negativa'] = fuzz.trimf(velocidad.universe, [-1.5, -1, 0])
-        velocidad['parada'] = fuzz.trimf(velocidad.universe, [-1, 0, 1])
-        velocidad['positiva'] = fuzz.trimf(velocidad.universe, [0, 1, 1.5])
-        velocidad['positiva+'] = fuzz.trimf(velocidad.universe, [1.15, 100, 100])
+        velocity['negative+'] = fuzz.trimf(velocity.universe, [-100, -100, -1.15])
+        velocity['negative'] = fuzz.trimf(velocity.universe, [-1.5, -1, 0])
+        velocity['stop'] = fuzz.trimf(velocity.universe, [-1, 0, 1])
+        velocity['positive'] = fuzz.trimf(velocity.universe, [0, 1, 1.5])
+        velocity['positive+'] = fuzz.trimf(velocity.universe, [1.15, 100, 100])
 
 
-        angulo['izquierda'] = fuzz.trimf(angulo.universe, [-0.02, -0.005, 0])
-        angulo['mantener'] = fuzz.trimf(angulo.universe, [-0.005, 0, 0.005])
-        angulo['derecha'] = fuzz.trimf(angulo.universe, [0, 0.005, 0.02])
+        angle['left'] = fuzz.trimf(angle.universe, [-0.02, -0.005, 0])
+        angle['mantain'] = fuzz.trimf(angle.universe, [-0.005, 0, 0.005])
+        angle['right'] = fuzz.trimf(angle.universe, [0, 0.005, 0.02])
 
         """
-        distancia.view()
-        velocidad.view()
-        angulo.view()
+        distance.view()
+        velocity.view()
+        angle.view()
         plt.show()
         """
-        # Definir las reglas difusas
-        regla1 = ctrl.Rule(distancia['derecha'] & velocidad['negativa'], angulo['derecha']) # yendo sentido correcto (horario)
-        regla2 = ctrl.Rule(distancia['derecha'] & velocidad['negativa+'], angulo['izquierda']) # yendo sentido correcto y acelerado (antihorario)
-        regla3 = ctrl.Rule(distancia['derecha'] & velocidad['positiva'], angulo['derecha']) # yendo en sentido contrario (horario)
-        regla4 = ctrl.Rule(distancia['derecha'] & velocidad['parada'], angulo['derecha']) # me dirijo a sentido correcto (horario)
-        regla5 = ctrl.Rule(distancia['centro'] & velocidad['negativa'], angulo['izquierda']) # giro para que no se vaya y que la inercia haga caer la bola por la derecha
+        # Define fuzzy rules
+        rule1 = ctrl.Rule(distance['right'] & velocity['negative'], angle['right']) # going in the correct direction (clockwise)
+        rule2 = ctrl.Rule(distance['right'] & velocity['negative+'], angle['left']) # going in the correct direction and accelerated (counterclockwise)
+        rule3 = ctrl.Rule(distance['right'] & velocity['positive'], angle['right']) # going in the opposite direction (clockwise)
+        rule4 = ctrl.Rule(distance['right'] & velocity['stop'], angle['right']) # heading in the right direction (clockwise)
+        rule5 = ctrl.Rule(distance['centre'] & velocity['negative'], angle['left']) # turning to not let the ball fall out and make the inertia fall slowly to the right to the next floor
 
-        regla6 = ctrl.Rule(distancia['izquierda'] & velocidad['positiva'], angulo['izquierda']) # yendo sentido correcto (antihorario)
-        regla7 = ctrl.Rule(distancia['izquierda'] & velocidad['positiva+'], angulo['derecha']) # yendo sentido correcto y acelerado (horario)
-        regla8 = ctrl.Rule(distancia['izquierda'] & velocidad['negativa'], angulo['izquierda']) # yendo en sentido contrario (antihorario)
-        regla9 = ctrl.Rule(distancia['izquierda'] & velocidad['parada'], angulo['izquierda']) # me dirijo a sendito correcto (antihorario)
-        regla10 = ctrl.Rule(distancia['centro'] & velocidad['positiva'], angulo['derecha']) # giro para que no se vaya y dejo que la inercia haga caer la bola por la izquierda
+        rule6 = ctrl.Rule(distance['left'] & velocity['positive'], angle['left']) # going in the correct direction (counterclockwise)
+        rule7 = ctrl.Rule(distance['left'] & velocity['positive+'], angle['right']) # going in the correct direction and accelerated (clockwise)
+        rule8 = ctrl.Rule(distance['left'] & velocity['negative'], angle['left']) # going in the opposite direction (counterclockwise)
+        rule9 = ctrl.Rule(distance['left'] & velocity['stop'], angle['left']) # heading in the right direction (counterclockwise)
+        rule10 = ctrl.Rule(distance['center'] & velocity['positive'], angle['right']) # turning to not let the ball fall out and make the inertia fall slowly to the left to the next floor
 
-        # Crear y simular un sistema de control difuso
-        sistema_control = ctrl.ControlSystem([regla1, regla2, regla3, regla4, regla5, regla6, regla7, regla8, regla9, regla10])
-        simulador = ctrl.ControlSystemSimulation(sistema_control)
+        # Creating and simulating a fuzzy control system
+        control_system = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5, rule6, rule7, rule8, rule9, rule10])
+        simulator = ctrl.ControlSystemSimulation(control_system)
         
-        # Inputs para Fuzzificar + Defuzzificar según centroid
-        simulador.input['distancia'] = dist 
-        simulador.input['velocidad'] = vel 
-        # Calcular la salida
+        # Inputs for Fuzzify + Defuzzify according to centeroid
+        simulator.input['distance'] = dist 
+        simulator.input['velocity'] = vel 
+        # Calculate the output
         try:
-            simulador.compute()
-            angulo_output = simulador.output['angulo']
-            self.angle = angulo_output
+            simulator.compute()
+            angle_output = simulator.output['angle']
+            self.angle = angle_output
         except (AssertionError, ValueError):
-            angulo_output = 0
+            angle_output = 0
 
         self.prev_dist = dist
-        return -angulo_output
+        return -angle_output
 
 # Controlador de Vladys
