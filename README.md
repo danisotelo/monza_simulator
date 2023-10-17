@@ -26,6 +26,12 @@ Before running the program, you need to install the required dependencies. The m
 pip install pygame
 ```
 
+Other dependencies needed:
+```
+pip install scikit-fuzzy
+pip install matplotlib
+```
+
 ## Running the Program
 After cloning the repository and installing the required dependencies, navigate to the directory containing the **monza_simulator** code and run:
 ```
