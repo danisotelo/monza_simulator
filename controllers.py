@@ -119,7 +119,7 @@ class FuzzyLogicController:
         rule2 = ctrl.Rule(distance['right'] & velocity['negative+'], angle['left']) # going in the correct direction and accelerated (counterclockwise)
         rule3 = ctrl.Rule(distance['right'] & velocity['positive'], angle['right']) # going in the opposite direction (clockwise)
         rule4 = ctrl.Rule(distance['right'] & velocity['stop'], angle['right']) # heading in the right direction (clockwise)
-        rule5 = ctrl.Rule(distance['centre'] & velocity['negative'], angle['left']) # turning to not let the ball fall out and make the inertia fall slowly to the right to the next floor
+        rule5 = ctrl.Rule(distance['center'] & velocity['negative'], angle['left']) # turning to not let the ball fall out and make the inertia fall slowly to the right to the next floor
 
         rule6 = ctrl.Rule(distance['left'] & velocity['positive'], angle['left']) # going in the correct direction (counterclockwise)
         rule7 = ctrl.Rule(distance['left'] & velocity['positive+'], angle['right']) # going in the correct direction and accelerated (clockwise)
