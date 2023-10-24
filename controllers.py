@@ -10,7 +10,6 @@ Version: 2.0
 import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
-import matplotlib.pyplot as plt
 from settings import *
 
 '''
@@ -57,13 +56,15 @@ class SlidingModeController:
 
         return control_action
 
+
 '''
-Fuzzy Logic Control :
- - Beginner:
- - Intermediate:
- - Expert:
- - Legendary: 
+Fuzzy Logic Control (FLC) uses degrees of truth, rather than strict binary 
+(True or False), to analyze, make decisions, and control situations where
+input data might be imprecise or ambiguos. The following controller is
+adapted to beat Monza for all the different levels. 
 '''
+
+
 class FuzzyLogicController:
     def __init__(self, diff):
         self.diff = diff
@@ -145,4 +146,5 @@ class FuzzyLogicController:
         self.prev_dist = dist
         return -angle_output
 
-# Controlador de Vladys
+
+# Vladys' controller

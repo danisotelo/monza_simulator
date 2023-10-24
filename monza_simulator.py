@@ -12,6 +12,7 @@
                wins, number of losses and best time is saved.
 
 - Requirements: Install pygame.py - https://www.pygame.org/download.shtml (or run "pip install pygame")
+                Install skfuzzy.py https://pypi.org/project/scikit-fuzzy/ - (or run "pip install scikit-fuzzy")
 =================================================================================================================
 '''
 
