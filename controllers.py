@@ -57,7 +57,13 @@ class SlidingModeController:
 
         return control_action
 
-
+'''
+Fuzzy Logic Control :
+ - Beginner:
+ - Intermediate:
+ - Expert:
+ - Legendary: 
+'''
 class FuzzyLogicController:
     def __init__(self, diff):
         self.diff = diff
@@ -92,7 +98,6 @@ class FuzzyLogicController:
         velocity = ctrl.Antecedent(np.arange(-100, 100, 0.5), 'velocity')
         angle = ctrl.Consequent(np.arange(-0.04, 0.04, 0.001), 'angle')
 
-        
         # Define the fuzzy sets for the input and output variables
         distance['left'] = fuzz.trimf(distance.universe, [-r_max, -r_max/4, 0])
         distance['center'] = fuzz.trimf(distance.universe, [-30.8, 0, 30.8])
@@ -109,12 +114,6 @@ class FuzzyLogicController:
         angle['mantain'] = fuzz.trimf(angle.universe, [-0.005, 0, 0.005])
         angle['right'] = fuzz.trimf(angle.universe, [0, 0.005, 0.02])
 
-        """
-        distance.view()
-        velocity.view()
-        angle.view()
-        plt.show()
-        """
         # Define fuzzy rules
         rule1 = ctrl.Rule(distance['right'] & velocity['negative'], angle['right']) # going in the correct direction (clockwise)
         rule2 = ctrl.Rule(distance['right'] & velocity['negative+'], angle['left']) # going in the correct direction and accelerated (counterclockwise)
