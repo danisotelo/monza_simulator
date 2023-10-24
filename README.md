@@ -29,7 +29,6 @@ pip install pygame
 Other dependencies needed:
 ```
 pip install scikit-fuzzy
-pip install matplotlib
 ```
 
 ## Running the Program
